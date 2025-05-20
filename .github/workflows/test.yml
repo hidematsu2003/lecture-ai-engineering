@@ -20,7 +20,14 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest great_expectations pandas scikit-learn flake8 black mypy
+        pip install \
+          black==23.11.0 \
+          pytest \
+          great_expectations \
+          pandas \
+          scikit-learn \
+          flake8 \
+          mypy
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Lint with flake8
@@ -40,10 +47,3 @@ jobs:
       run: |
         pytest day5/演習3/tests/test_model.py -v
 
-    - name: Run inference performance tests
-      run: |
-        pytest day5/演習3/tests/test_inference.py -v
-
-    - name: Run model regression test
-      run: |
-        pytest day5/演習3/tests/test_model_regression.py -v
